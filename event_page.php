@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>
+        Events of St. Paul University at San Miguel
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+    <link rel="icon" href="assets/logo-30-Copy.png" type="image/png">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            /* Removed overflow: hidden; to allow scrolling */
+        }
+        .fb-page-container {
+            display: flex;
+            justify-content: center; /* Center the columns */
+            align-items: flex-start; /* Align items to the top */
+            margin: 5px 0; /* Reduced margin for spacing */
+        }
+        .fb-page {
+            width: 400px; /* Set a fixed width for each Facebook page */
+            height: 500px; /* Increased height for each Facebook page to avoid overlap */
+            margin: 0 20px; /* Add margin between columns */
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Customize the shadow */
+        }
+    </style>
+</head>
+<body class="bg-[#35374B]">
+<header class="bg-gradient-to-r from-green-300 to-green-700 p-4 flex justify-between items-center sticky top-0 z-50">
+    <div class="flex items-center">
+        <img alt="Paulumni logo" class="h-20" src="assets/alumni-logov2.png"/>
+    </div>
+    <nav class="space-x-4 flex items-center">
+        <a class="text-white text-xl" href="index.html">Home</a>
+        <a class="text-white text-xl" href="register_page.php">Alumni</a>
+        <a class="text-white font-bold text-xl" href="event_page.php">Events</a>
+        <a class="text-white text-xl" href="donate_page.html">Donate</a>
+            <!-- Sign In and Sign Up buttons -->
+            <a href="sign_in_page.php" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Sign In</a>
+            <a href="register_page.php" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Sign Up</a>
+    </nav>
+</header>
+<main class="bg-[#35374B] p-2"> <!-- Reduced padding -->
+    <h1 class="text-center text-3xl font-bold mb-4 text-shadow">
+        <span class="text-green-500">Events</span> <span class="text-white">of St. Paul University at San Miguel</span>
+    </h1>
+    <h2 class="text-center text-xl text-gray-300 mb-4">
+        Keep updated through our Facebook pages!
+    </h2>
+
+    <div class="fb-page-container">
+        <div class="fb-page" data-href="https://www.facebook.com/spusmalerts" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+            <blockquote cite="https://www.facebook.com/spusmalerts" class="fb-xfbml-parse-ignore">
+                <a href="https://www.facebook.com/spusmalerts">St. Paul University at San Miguel</a>
+            </blockquote>
+        </div>
+        <div class="fb-page" data-href="https://www.facebook.com/SPUSMThePaulinian" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+            <blockquote cite="https://www.facebook.com/SPUSMThePaulinian" class="fb-xfbml-parse-ignore">
+                <a href="https://www.facebook.com/SPUSMThePaulinian">The Paulinian SPUSM</a>
+            </blockquote>
+        </div>
+        <div class="fb-page" data-href="https://www.facebook.com/profile.php?id=100084734933859" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+            <blockquote cite="https://www.facebook.com/profile.php?id=100084734933859" class="fb-xfbml-parse-ignore">
+                <a href="https://www.facebook.com/profile.php?id=100084734933859">Paulinian Student Government - SPUSM</a>
+            </blockquote>
+        </div>
+    </div>
+</main>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v22.0"></script>
+<footer class="bg-gradient-to-r from-green-700 to-green-500 py-8 relative text-white">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-xl font-bold">OFFICE OF ALUMNI RELATIONS</h3>
+                <p class="mt-4">Rm. 209 College Building, Salangan, San Miguel, Philippines, 3011</p>
+                <h3 class="text-xl font-bold mt-4">EMAIL</h3>
+                <p class="mt-4">Admin: apaulumni@gmail.com</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold">SPUSM CONTACT NUMBERS</h3>
+                <p class="mt-4">ADMISSION/ GUIDANCE OFFICE - 0908 269 4342</p>
+                <p class="mt-4">REGISTRAR - 0947 344 6177</p>
+                <p class="mt-4">FINANCE OFFICE - (044) 697 5638 </p>
+            </div>
+        </div>
+    </div>
+    <div class="absolute bottom-4 right-4">
+        <img alt="St. Paul University at San Miguel logo" class="h-12" src="assets/spusm-website-10.png"/>
+    </div>
+</footer>
+
+</body>
+</html>

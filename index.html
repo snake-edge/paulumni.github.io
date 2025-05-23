@@ -1,0 +1,204 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>
+        Paulumni: An Alumni Tracking System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+    <link rel="icon" href="assets/logo-30-Copy.png" type="image/png">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentIndex = 0;
+            const images = document.querySelectorAll('.slider img');
+            const totalImages = images.length;
+
+            function showImage(index) {
+                images.forEach((img, i) => {
+                    if (i === index) {
+                        img.classList.remove('opacity-0');
+                        img.classList.add('opacity-100');
+                    } else {
+                        img.classList.remove('opacity-100');
+                        img.classList.add('opacity-0');
+                    }
+                });
+            }
+
+            // Automatically change images every 3 seconds
+            setInterval(() => {
+                currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
+                showImage(currentIndex);
+            }, 3000); // Change image every 3000 milliseconds (3 seconds)
+
+            showImage(currentIndex); // Show the first image initially
+        });
+    </script>
+</head>
+<body class="bg-[#35374B] text-white">
+    <header class="bg-gradient-to-r from-green-300 to-green-700 p-4 flex justify-between items-center sticky top-0 z-50">
+        <div class="flex items-center">
+            <img alt="Paulumni logo" class="h-20" src="assets/alumni-logov2.png"/>
+        </div>
+        <nav class="space-x-4 flex items-center">
+            <a class="text-white font-bold text-xl" href="#">Home</a>
+            <a class="text-white text-xl" href="register_page.php?error=signin_required">Alumni</a>
+            <a class="text-white text-xl" href="event_page.php">Events</a>
+            <a class="text-white text-xl" href="donate_page.html">Donate</a>
+            <!-- Sign In and Sign Up buttons -->
+            <a href="sign_in_page.php" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Sign In</a>
+            <a href="register_page.php" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Sign Up</a>
+        </nav>
+    </header>
+    <section class="bg-gray-700 py-8">
+        <div class="slider relative max-w-6xl mx-auto h-[400px]"> <!-- Set a fixed height for the slider -->
+            <img alt="Slider image 1" class="w-full h-full object-cover absolute transition-opacity duration-500 opacity-100" src="assets/alumni_welcome.png"/>
+            <img alt="Slider image 2" class="w-full h-full object-cover absolute transition-opacity duration-500 opacity-0" src="assets/alumni_welcome2.jpg"/>
+            <img alt="Slider image 3" class="w-full h-full object-cover absolute transition-opacity duration-500 opacity-0" src="assets/alumni_welcome4.png"/>
+            <!-- Removed the navigation buttons -->
+        </div>
+        <div class="text-center mt-8">
+            <h1 class="text-center text-3xl font-bold mb-4 text-shadow">
+                Welcome to <span class="text-green-500">Paulumni:</span> An Alumni Tracking System
+            </h1>
+        </div>
+        <div class="max-w-6xl mx-auto mt-8 px-4">
+            <!-- ABOUT PAULUMNI SECTION -->
+            <div class="grid md:grid-cols-2 gap-8 p-8 bg-green-900 rounded-lg shadow-lg">
+                <div>
+                    <h3 class="text-xl font-bold text-green-500">About Paulumni</h3>
+                    <p class="mt-4 leading-relaxed text-gray-200">
+                        Paulumni is a web-based alumni tracking system designed for St. Paul University at San Miguel. 
+                        It enhances connectivity and engagement between the university, its alumni, and current students 
+                        by providing a centralized platform for profile updates, event notifications, and networking opportunities.
+                    </p>
+                    <img alt="Paulumni system screenshot" 
+                         class="mt-6 w-full rounded-lg shadow-md hover:scale-105 transition-transform duration-300" 
+                         src="assets/alumni_welcome1.png"/>
+                </div>
+                <div>
+                    <img alt="Alumni event" 
+                         class="w-full rounded-lg shadow-md hover:scale-105 transition-transform duration-300" 
+                         src="assets/alumni_welcome3.png"/>
+                    <h3 class="text-xl font-bold text-green-500 mt-6">Our Mission</h3>
+                    <p class="mt-4 leading-relaxed text-gray-200">
+                        To foster lifelong connections by bridging alumni and upcoming graduates with St. Paul University, 
+                        promoting collaboration, engagement, and community support.
+                    </p>
+                </div>
+            </div>
+        
+        <!-- SERVICE AWARDS & CONFERMENT SECTION -->
+        <div class="mt-12 bg-green-900 p-10 rounded-lg shadow-lg">
+            <!-- 2024 AWARD SECTION -->
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <!-- Left: Text Content -->
+                <div>
+                    <a href="https://www.facebook.com/share/p/162CFFEybM/" 
+                       class="text-2xl font-bold text-green-400 underline hover:text-green-300 transition"
+                       target="_blank">
+                        Service Awards & Conferment of Most Outstanding Alumni 2024
+                    </a>
+                    <p class="mt-4 leading-relaxed text-gray-200">
+                        Recognizing Paulinian excellence! Join us in celebrating alumni who have made a remarkable impact 
+                        in their fields and communities. Click the title to view more details.
+                    </p>
+                </div>
+                <!-- Right: Image -->
+                <div>
+                    <img src="assets/welcome_page_pic.jpg" alt="Outstanding Alumni 2024" 
+                        class="w-full rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"/>
+                </div>
+            </div>
+        
+            <!-- 2023 AWARD SECTION (IMAGE LEFT, TEXT RIGHT) -->
+            <div class="grid md:grid-cols-2 gap-8 items-center mt-12">
+                <!-- Left: Image -->
+                <div>
+                    <img src="assets/welcome_page_pic2.jpg" alt="Outstanding Alumni 2023" 
+                        class="w-full rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"/>
+                </div>
+                <!-- Right: Text Content -->
+                <div>
+                    <a href="https://www.facebook.com/spusmalerts/posts/pfbid0k9yEg2dSYJAUjjVVpCsY1WPEpE53z96DBH7tFuSttivaJPvXsitL3VBmjkanUUzFl" 
+                       class="text-2xl font-bold text-green-400 underline hover:text-green-300 transition"
+                       target="_blank">
+                        Conferment of the Most Outstanding Alumni Award 2023
+                    </a>
+                    <p class="mt-4 leading-relaxed text-gray-200">
+                        A look back at last year's honorees! Celebrating the remarkable achievements of Paulinian alumni 
+                        who have demonstrated excellence in their professions and made significant contributions to their communities.
+                        Click the title to view more details.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+            <!-- REGISTER SECTION -->
+            <div class="col-span-2 text-center mt-8 p-6 bg-green-900 rounded-lg shadow-md">
+                <p class="text-lg font-medium text-gray-100">Are you a Paulinian Alumni? Register now to stay connected!</p>
+                <button onclick="window.location.href='register_page.php'" 
+                    class="bg-green-500 text-white px-6 py-2 mt-4 rounded-lg hover:bg-green-600 transition font-semibold">
+                    REGISTER
+                </button>
+            </div>
+        </div>
+    </section>
+    <section class="bg-gray-700 py-8">
+        <div class="text-center">
+            <h2 class="text-2xl font-bold">LINKS</h2>
+        </div>
+        <div class="max-w-6xl mx-auto mt-8 px-4">
+            <div class="grid md:grid-cols-4 gap-4">
+                <a href="https://www.spusm.edu.ph/" target="_blank" class="bg-green-700 p-4 text-center block hover:bg-green-800 transition duration-200">
+                    <img alt="Official SPUSM Website" class="mx-auto" src="assets/spu-10.png"/>
+                    <p class="mt-2 font-bold">OFFICIAL SPUSM WEBSITE</p>
+                    <p>FOR MORE DETAILS</p>
+                </a>
+                <a href="https://www.facebook.com/people/SPC-Bulacan-Cluster/61562483877486/" target="_blank" class="bg-green-700 p-4 text-center block hover:bg-green-800 transition duration-200">
+                    <img alt="SPC Bulacan Cluster" class="mx-auto" src="assets/cluster-10.png"/>
+                    <p class="mt-2 font-bold">SPC BULACAN CLUSTER</p>
+                    <p>PAULINIAN COMMUNITY</p>
+                </a>
+                <a href="https://www.facebook.com/SPUSMThePaulinian" target="_blank" class="bg-green-700 p-4 text-center block hover:bg-green-800 transition duration-200">
+                    <img alt="The Paulinian" class="mx-auto" src="assets/the-paulinian-logo-removebg-preview-10.png"/>
+                    <p class="mt-2 font-bold">THE PAULINIAN SPUSM</p>
+                    <p>TERTIARY PUBLICATION</p>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61574576854835" target="_blank" class="bg-green-700 p-4 text-center block hover:bg-green-800 transition duration-200">
+                    <img alt="PSG" class="mx-auto rounded-full w-24 h-24" src="assets/fbpaulumni.jpg"/>
+                    <p class="mt -2 font-bold">PAULUMNI</p>
+                    <p>FACEBOOK PAGE</p>
+                </a>
+            </div>
+        </div>
+    </section>
+<footer class="bg-gradient-to-r from-green-700 to-green-500 py-8 relative">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-xl font-bold">OFFICE OF ALUMNI RELATIONS</h3>
+                <p class="mt-4">Rm. 209 College Building, Salangan, San Miguel, Philippines, 3011</p>
+                <h3 class="text-xl font-bold mt-4">EMAIL</h3>
+                <p class="mt-4">Admin: apaulumni@gmail.com</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold">SPUSM CONTACT NUMBERS</h3>
+                <p class="mt-4">ADMISSION/ GUIDANCE OFFICE - 0908 269 4342</p>
+                <p class="mt-4">REGISTRAR - 0947 344 6177</p>
+                <p class="mt-4">FINANCE OFFICE - (044) 697 5638 </p>
+            </div>
+        </div>
+    </div>
+    <div class="absolute bottom-4 right-4">
+        <img alt="St. Paul University at San Miguel logo" class="h-12" src="assets/spusm-website-10.png"/>
+    </div>
+</footer>
+</body>
+</html>
