@@ -1,0 +1,222 @@
+<?php
+session_start(); // Start the session to access session variables
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Register - Paulumni</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+    <link rel="icon" href="assets/logo-30-Copy.png" type="image/png">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script> <!-- Include reCAPTCHA API -->
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .recaptcha-container {
+            display: flex;
+            justify-content: center; /* Center the reCAPTCHA widget */
+            margin: 20px 0; /* Add some margin for spacing */
+        }
+        /* Toast styles */
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color:rgb(249, 79, 79);
+            color: #fff; /* White text */
+            padding: 15px 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.5s ease, top 0.5s ease;
+            z-index: 1000;
+            font-weight: bold;
+        }
+        .toast.show {
+            opacity: 1;
+            top: 50px; /* Moves straight down */
+        }
+    </style>
+    
+    <style>
+        /* Toast2 styles */
+        .toast2 {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgb(56, 161, 105); /* Green for success */
+            color: #fff; /* White text */
+            padding: 15px 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.5s ease, top 0.5s ease;
+            z-index: 1000;
+            font-weight: bold;
+        }
+        
+        /* Show the toast with animation */
+        .toast2.show {
+            opacity: 1;
+            top: 50px; /* Moves down */
+        }
+    </style>
+
+</head>
+<body class="text-gray-200 flex flex-col min-h-screen relative">
+    <!-- Video Background -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+        <video autoplay loop muted class="w-full h-full object-cover">
+            <source src="assets/register.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <header class="bg-gradient-to-r from-green-300 to-green-700 p-4 flex justify-between items-center sticky top-0 z-50">
+        <div class="flex items-center">
+            <img alt="Paulumni logo" class="h-20" src="assets/alumni-logov2.png"/>
+        </div>
+        <nav class="space-x-4 flex items-center">
+            <a class="text-white text-xl" href="index.html">Home</a>
+            <a class="text-white text-xl" href="register_page.php">Alumni</a>
+            <a class="text-white text-xl" href="event_page.php">Events</a>
+            <a class="text-white text-xl" href="donate_page.html">Donate</a>
+            <!-- Sign In and Sign Up buttons -->
+            <a href="sign_in_page.php" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Sign In</a>
+            <a href="register_page.php" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Sign Up</a>
+        </nav>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center py-10 relative">
+        <!-- Dark Overlay to Darken the Background -->
+        <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-60 z-[-1]"></div>
+
+        <!-- Form (Slightly Smaller) -->
+        <div class="bg-green-700 p-6 rounded-lg shadow-lg w-full max-w-sm">
+            <div class="flex justify-center mb-4">
+                <img alt="Paulumni logo" class="h-20" src="assets/alumni-logov2.png"/>
+            </div>
+
+            <!-- Display error message if it exists -->
+            <?php if (isset($_SESSION['registration_error'])): ?>
+                <div class="bg-red-500 text-white p-2 rounded mb-3 text-center">
+                    <?php echo htmlspecialchars($_SESSION['registration_error']); ?>
+                </div>
+                <?php unset($_SESSION['registration_error']); ?>
+            <?php endif; ?>
+
+            <h2 class="text-center text-xl font-bold mb-2">Sign In</h2>
+            
+            <form class="space-y-3" action="login.php" method="POST">
+                <input class="w-full p-2 rounded bg-gray-200 text-gray-900" name="email" placeholder="Email" type="email" required/>
+                <input class="w-full p-2 rounded bg-gray-200 text-gray-900" name="password" placeholder="Password" type="password" required/>
+                <button class="w-full p-2 rounded bg-green-500 text-gray-900 font-bold" name="login" type="submit">Sign In</button>
+            </form>
+            
+            <p class="text-center text-gray-400 mt-2">
+                <a href="verify_email_page.php" class="text-blue-400 hover:underline">Forgot Password?</a>
+            </p>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // Check if there's a toast message from PHP session
+        <?php if (isset($_SESSION['toast_message'])): ?>
+            let toast = document.getElementById("toast");
+            toast.innerText = "<?php echo $_SESSION['toast_message']; ?>";
+            toast.style.display = "block";
+
+            // Remove toast message from session after showing
+            <?php unset($_SESSION['toast_message']); ?>
+        <?php endif; ?>
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('error') === 'signin_required') {
+                showToast("You need to sign in before accessing the Alumni page.");
+            }
+        });
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            // Show toast
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+
+            // Remove toast after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+        }
+    </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            <?php if (isset($_SESSION['toast2_message'])): ?>
+                showToast2("<?php echo $_SESSION['toast2_message']; ?>");
+                <?php unset($_SESSION['toast2_message']); ?> // Clear after showing
+            <?php endif; ?>
+        });
+    
+        function showToast2(message) {
+            const toast2 = document.createElement('div');
+            toast2.className = 'toast2';
+            toast2.innerText = message;
+            document.body.appendChild(toast2);
+    
+            // Always green
+            toast2.style.backgroundColor = "#38a169"; // Green
+    
+            // Show toast
+            setTimeout(() => {
+                toast2.classList.add('show');
+            }, 100);
+    
+            // Hide toast after 3 seconds
+            setTimeout(() => {
+                toast2.classList.remove('show');
+                setTimeout(() => toast2.remove(), 500);
+            }, 3000);
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const passwordInput = document.getElementById('password');
+            const passwordHint = document.getElementById('password-hint');
+    
+            // Show the hint when clicking or typing in the password field
+            passwordInput.addEventListener('focus', function () {
+                passwordHint.classList.remove('hidden');
+            });
+    
+            passwordInput.addEventListener('input', function () {
+                passwordHint.classList.remove('hidden');
+            });
+    
+            // Optionally hide the hint when the field loses focus
+            passwordInput.addEventListener('blur', function () {
+                passwordHint.classList.add('hidden');
+            });
+        });
+    </script>
+
+
+</body>
+</html>
